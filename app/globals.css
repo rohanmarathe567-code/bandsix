@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Base resets
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-bg-base text-text-primary font-sans;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+/* ============================================================
+   Scrollbar styling
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #121212; }
+::-webkit-scrollbar-thumb { background: #333333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #444444; }
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection { background: rgba(59, 130, 246, 0.35); color: #f1f5f9; }
+
+/* ============================================================
+   Focus ring
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   react-select overrides - dark theme
+   ============================================================ */
+.rs__control {
+  @apply bg-bg-elevated border-border rounded-lg !important;
+  min-height: 44px !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease;
+}
+.rs__control:hover,
+.rs__control--is-focused {
+  border-color: #3b82f6 !important;
+}
+.rs__menu {
+  @apply bg-bg-elevated border border-border rounded-lg shadow-2xl !important;
+  z-index: 9999 !important;
+}
+.rs__menu-list { @apply p-1 !important; }
+.rs__option {
+  @apply text-text-primary rounded-md cursor-pointer !important;
+  padding: 8px 12px !important;
+}
+.rs__option:hover,
+.rs__option--is-focused {
+  @apply bg-primary/10 !important;
+}
+.rs__option--is-selected {
+  @apply bg-primary/20 text-primary-light !important;
+}
+.rs__single-value { @apply text-text-primary !important; }
+.rs__placeholder { @apply text-text-muted !important; }
+.rs__input-container { @apply text-text-primary !important; }
+.rs__multi-value {
+  @apply bg-primary/15 rounded !important;
+}
+.rs__multi-value__label { @apply text-primary-light text-sm !important; }
+.rs__multi-value__remove:hover { @apply bg-primary/30 text-primary-light !important; }
+.rs__indicator-separator { @apply bg-border !important; }
+.rs__dropdown-indicator,
+.rs__clear-indicator { @apply text-text-muted !important; }
+.rs__dropdown-indicator:hover,
+.rs__clear-indicator:hover { @apply text-text-secondary !important; }
+.rs__no-options-message { @apply text-text-muted text-sm !important; }
+.rs__loading-message { @apply text-text-muted text-sm !important; }
+.rs__group-heading { @apply text-text-muted text-xs font-semibold uppercase tracking-wider !important; }
+
+/* ============================================================
+   Table utilities
+   ============================================================ */
+.table-striped tbody tr:nth-child(even) {
+  @apply bg-white/[0.015];
+}
+
+/* ============================================================
+   Gradient text - blue to amber brand gradient
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #fcd34d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   Card hover
+   ============================================================ */
+.card-hover {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  @apply shadow-card-hover border-primary/25;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   Pill badges
+   ============================================================ */
+.badge {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border;
+}
+.badge-gold   { @apply bg-yellow-500/15 text-yellow-400 border-yellow-500/30; }
+.badge-silver { @apply bg-slate-400/15 text-slate-300 border-slate-400/30; }
+.badge-bronze { @apply bg-amber-700/15 text-amber-600 border-amber-700/30; }
+.badge-band6  { @apply bg-emerald-500/15 text-emerald-400 border-emerald-500/30; }
+.badge-state  { @apply bg-blue-500/15 text-blue-400 border-blue-500/30; }
+.badge-allround { @apply bg-amber-500/15 text-amber-400 border-amber-500/30; }
+
+/* ============================================================
+   Stat cards
+   ============================================================ */
+.stat-card {
+  @apply bg-bg-card border border-border rounded-xl p-4 flex flex-col gap-1;
+  transition: border-color 0.2s ease;
+}
+
+/* ============================================================
+   Shimmer skeleton loader
+   ============================================================ */
+.skeleton {
+  @apply bg-bg-elevated rounded animate-pulse;
+  background-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================================
+   Tab navigation
+   ============================================================ */
+.tab-nav {
+  @apply flex gap-1 bg-bg-elevated border border-border rounded-lg p-1;
+}
+.tab-btn {
+  @apply px-4 py-2 rounded-md text-sm font-medium text-text-secondary transition-all duration-150 cursor-pointer;
+}
+.tab-btn.active,
+.tab-btn[data-active="true"] {
+  @apply bg-primary/20 text-primary-light;
+}
+.tab-btn:hover:not(.active):not([data-active="true"]) {
+  @apply text-text-primary bg-white/5;
+}
+
+/* ============================================================
+   Number inputs - hide spin buttons
+   ============================================================ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type="number"] { -moz-appearance: textfield; }

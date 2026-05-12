@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($content = Get-Content \"C:\\\\Users\\\\sudar\\\\.claude\\\\projects\\\\c--BandSix\\\\e6fec324-71a1-4388-a44b-31140d0c750a\\\\tool-results\\\\bwje0lx2n.txt\" -Raw; [regex]::Matches\\($content, '\"name\":\"\\([^\"]+\\)\"'\\) | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique)"
+    ]
+  }
+}
