@@ -363,6 +363,7 @@ export default function ATARCalculatorPage() {
                             onChange={opt => updateSubject(row.id, opt?.data ?? null)}
                             placeholder="Select course..."
                             isSearchable menuPlacement="auto"
+                            menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
                             noOptionsMessage={() => 'No courses found'}
                           />
                           {b6AtSchool != null && (
@@ -752,6 +753,7 @@ export default function ATARCalculatorPage() {
                       value={row.subject ? { value: row.subject.id, label: row.subject.name, data: row.subject } : null}
                       onChange={opt => updateRevSub(row.id, opt?.data ?? null)}
                       isSearchable menuPlacement="auto"
+                      menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
                     />
                   </div>
                   <div className="text-text-muted text-xs w-8 text-center shrink-0">
