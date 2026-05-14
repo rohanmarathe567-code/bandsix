@@ -209,8 +209,8 @@ export default function ATARCalculatorPage() {
   const hasEnglish     = revSubjects.some(r => r.subject!.name.toLowerCase().includes('english'))
 
   // Calculate required scaled mark per unit for target aggregate
-  // This assumes all subjects contribute equally and will be selected
-  const requiredScaledPerUnit = totalRevUnits >= 10 && hasEnglish ? targetAgg / totalRevUnits : 0
+  // ATAR uses best 10 units, so each unit needs to contribute targetAgg/10 scaled marks
+  const requiredScaledPerUnit = totalRevUnits >= 10 && hasEnglish ? targetAgg / 10 : 0
 
   const reverseResults = revSubjects.map(r => {
     const s       = r.subject!
@@ -219,8 +219,9 @@ export default function ATARCalculatorPage() {
     if (!scaling || scaling.slope <= 0 || requiredScaledPerUnit <= 0) {
       return { subject: s, required: null as number | null }
     }
+    // Each unit contributes requiredScaledPerUnit scaled marks
+    // So this subject needs: requiredScaledPerUnit * units scaled marks total
     // Solve: requiredScaledPerUnit * units = slope * hsc + intercept
-    // So: hsc = (requiredScaledPerUnit * units - intercept) / slope
     const hsc = (requiredScaledPerUnit * s.units - scaling.intercept) / scaling.slope
     return { subject: s, required: Math.min(100, Math.max(1, Math.round(hsc))) }
   })
@@ -713,7 +714,7 @@ export default function ATARCalculatorPage() {
                     {atarBand(parseFloat(targetATAR) || 0)}
                   </div>
                   <div className="text-text-muted text-xs mt-0.5">aggregate ≈ {targetAgg.toFixed(0)}</div>
-                  <div className="text-text-muted text-xs">required scaled ≈ {(requiredScaledPerUnit * 10).toFixed(1)} total</div>
+                  <div className="text-text-muted text-xs">required scaled ≈ {requiredScaledPerUnit.toFixed(1)}/unit</div>
                 </div>
               </div>
             </div>
@@ -784,8 +785,8 @@ export default function ATARCalculatorPage() {
                   Marks needed for ATAR {targetATAR}
                 </h3>
                 <p className="text-xs text-text-muted mt-0.5">
-                  Uses {PRIMARY_YEAR} scaling. Assumes all subjects contribute equally to reach target aggregate.
-                  Actual marks may vary based on cohort performance and subject selection.
+                  Uses {PRIMARY_YEAR} scaling. Assumes your subjects will be among the best 10 units counted.
+                  Each unit needs {requiredScaledPerUnit.toFixed(1)} scaled marks on average.
                 </p>
               </div>
               <div className="divide-y divide-border">
