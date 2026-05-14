@@ -303,8 +303,8 @@ export default function ATARCalculatorPage() {
           )}
 
           {/* Subject table */}
-          <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
+          <div className="bg-bg-card border border-border rounded-xl overflow-hidden flex flex-col">
+            <div className="overflow-x-auto overflow-y-auto max-h-[600px]">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border bg-bg-elevated text-text-muted text-xs uppercase tracking-wider">
